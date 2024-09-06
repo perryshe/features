@@ -1,0 +1,33 @@
+  graph TD
+    A[Start] -->|Main Function| B[Initialize Structures]
+    B -->|Arguments Check| C{argc > 1}
+    C -->|Yes| D[Valid Options Check]
+    C -->|No| L1[Print Invalid options]
+
+    D -->|optind < argc| E{Files Available}
+    E -->|Yes| F[Open & Read Files]
+    E -->|No| L2[Print no files]
+    F --> G[Open File]
+
+    G -->|File exists| H[Print File Contents]
+    G -->|File does not exist| I[Print Error]
+
+    H -->|Check Flags & Print| J((print_file))
+    J --> K{EOF}
+    K -->|Yes| O[Close File]
+    O --> F
+
+    style A fill:#f96;
+    style B fill:#bbf;
+    style C fill:#bbf;
+
+    style E fill:#bbf;
+
+    style G fill:#bbf;
+    style H fill:#f96;
+    style I fill:#f96;
+
+    style K fill:#bbf;
+    style L1 fill:#f96;
+    style L2 fill:#f96;
+    style O fill:#f96;
